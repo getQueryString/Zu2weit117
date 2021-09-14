@@ -5,7 +5,7 @@ package Listeners;
 import Main.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
-import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_17_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
@@ -16,9 +16,9 @@ import java.util.ArrayList;
 
 import static org.bukkit.Bukkit.getConsoleSender;
 
-public class CheckPing implements Listener {
+public class CheckPing /*implements Listener*/ {
 
-    private Main plugin;
+    /*private Main plugin;
     Plugin context;
 
     public CheckPing(Plugin pl) {
@@ -115,6 +115,5 @@ public class CheckPing implements Listener {
             e.printStackTrace();
         }
         return -1;
-    }
-
+    }*/
 }

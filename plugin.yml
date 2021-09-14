@@ -1,7 +1,7 @@
-name: Zu2weit16
+name: Zu2weit17
 author: Fin/getQueryString
 version: 2.0.26
-api-version: 1.16
+api-version: 1.17
 description: Copyright  2020
 website: https://www.youtube.com/c/mrdudecrafthd
 depend: [PermissionsEx]

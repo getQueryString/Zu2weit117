@@ -46,7 +46,7 @@ public class Main extends JavaPlugin implements Listener {
         instance = this;
         Autoshutdown as = new Autoshutdown(this);
         CreeperListener cl = new CreeperListener(this);
-        CheckPing cp = new CheckPing(this);
+        //CheckPing cp = new CheckPing(this);
 
         EVENT_PlayerJoin join = new EVENT_PlayerJoin();
         for (Player pl : Bukkit.getOnlinePlayers())
@@ -66,7 +66,7 @@ public class Main extends JavaPlugin implements Listener {
         pm.registerEvents(new Vektor(), this);
         pm.registerEvents(as, this);
         pm.registerEvents(cl, this);
-        pm.registerEvents(cp, this);
+        //pm.registerEvents(cp, this);
         getCommand("ping").setExecutor(new CMD_Ping());
         getCommand("kopf").setExecutor(new CMD_Kopf());
         getCommand("clearchat").setExecutor(new CMD_ClearChat());

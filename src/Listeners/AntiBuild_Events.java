@@ -292,7 +292,7 @@ public class AntiBuild_Events implements Listener {
     }
 
     // PlayerBedEntry
-    @EventHandler
+    /*@EventHandler
     public void onPlayerBedEntry(PlayerBedEnterEvent e) {
         Player p = e.getPlayer();
         boolean permexo = PermissionsEx.getUser(p).inGroup("Owner");
@@ -339,7 +339,7 @@ public class AntiBuild_Events implements Listener {
                 Bukkit.broadcastMessage("§5" + p.getName() + " §fist wieder aufgestanden.");
             }
         }
-    }
+    }*/
 
     // PlayerPortal
     @EventHandler
