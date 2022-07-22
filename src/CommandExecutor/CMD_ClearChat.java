@@ -31,7 +31,7 @@ public class CMD_ClearChat implements Listener, CommandExecutor {
                 else if (p.isOp()) playerColor = "§f§l";
                 else playerColor = "§c";
 
-                Bukkit.broadcastMessage(Main.pre + " §7Der Chat wurde von " + playerColor + p.getName() + " §7geleert.");
+                Bukkit.broadcastMessage(Main.pre + " §7Der Chat wurde von " + playerColor + p.getName() + "§7 geleert.");
                 return true;
             }
             p.sendMessage(Main.noperm);

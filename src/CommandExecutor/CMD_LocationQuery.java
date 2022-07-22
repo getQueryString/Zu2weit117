@@ -26,12 +26,11 @@ public class CMD_LocationQuery implements CommandExecutor {
                         } else {
                             p.sendMessage("§cWelt nicht gefunden");
                         }
-                    } else if (args.length == 0) {
-                        p.sendMessage("§bBenutze: §f/loc §a<world, nether, end>, <meta, list>");
-                    } else if (args.length >= 3) {
+                    } else if (args.length == 0 || args.length >= 3) {
                         p.sendMessage("§bBenutze: §f/loc §a<world, nether, end>, <meta, list>");
                     }
-                    if (args.length == 2)
+
+                    if (args.length == 2) {
                         if (args[0].equalsIgnoreCase("world") && args[1].equalsIgnoreCase("ohome")) {
                             p.sendMessage("§7[§bAltes Zuhause§7]\n§aworld§7» §fX:§7-1015 §fY:§764 §fZ:§7-387");
                         } else if (args[0].equalsIgnoreCase("world") && args[1].equalsIgnoreCase("nhome")) {
@@ -60,6 +59,7 @@ public class CMD_LocationQuery implements CommandExecutor {
                         } else {
                             p.sendMessage("§cWelt oder Meta nicht gefunden");
                         }
+                    }
                 } else {
                     sender.sendMessage(Main.noperm);
                 }
