@@ -32,13 +32,10 @@ public class CreeperListener implements Listener {
 
     public void teleportCreeper() {
         new BukkitRunnable() {
-
             @Override
             public void run() {
-
-                if (Bukkit.getOnlinePlayers().size() >= 1) {
+                if (Bukkit.getOnlinePlayers().size() >= 1)
                     Bukkit.getServer().dispatchCommand(getConsoleSender(), "tp @e[type=creeper] ~ -2 ~");
-                }
             }
         }.runTaskTimer(plugin, 1200, 1200);
     }
