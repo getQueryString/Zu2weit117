@@ -15,7 +15,7 @@ import ru.tehkode.permissions.bukkit.PermissionsEx;
 
 public class CMD_Stop implements CommandExecutor {
 
-    private Main plugin;
+    private final Main plugin;
 
     public CMD_Stop() {
         this.plugin = Main.getPlugin(Main.class);
@@ -28,45 +28,27 @@ public class CMD_Stop implements CommandExecutor {
                     int count = 3;
 
                     public void run() {
-                        if (count > 1) {
+                        if (count >= 1) {
                             if (Bukkit.getOnlinePlayers().size() >= 1) {
                                 for (Player all : Bukkit.getOnlinePlayers()) {
                                     Bukkit.broadcastMessage(
-                                            "§8| §4Server§f-§4shutdown in§8: §e" + count + " Sekunden");
+                                            "§8| §4Server§f-§4shutdown in§8: §e" + count + " Sekunde(n)");
                                     all.playSound(all.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0F, 50.0F);
                                     break;
-
                                 }
-                            } else if (Bukkit.getOnlinePlayers().size() == 0) {
-                                Bukkit.getConsoleSender().sendMessage("§8| §4Server§f-§4shutdown in§8: §e" + count + " Sekunden");
-                            }
+                            } else if (Bukkit.getOnlinePlayers().size() == 0)
+                                Bukkit.getConsoleSender().sendMessage("§8| §4Server§f-§4shutdown in§8: §e" + count + " Sekunde(n)");
                             count--;
-                        } else if (count == 1) {
-                            if (Bukkit.getOnlinePlayers().size() >= 1) {
-                                for (Player all : Bukkit.getOnlinePlayers()) {
-                                    Bukkit.broadcastMessage(
-                                            "§8| §4Server§f-§4shutdown in§8: §e" + count + " Sekunde");
-                                    all.playSound(all.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0F, 50.0F);
-                                    break;
-
-                                }
-                            } else if (Bukkit.getOnlinePlayers().size() == 0) {
-                                Bukkit.getConsoleSender().sendMessage("§8| §4Server§f-§4shutdown in§8: §e" + count + " Sekunde");
-                            }
-                            count--;
-                        } else if (count == 0) {
+                        } else if (count == 0)
                             Bukkit.shutdown();
-                            count--;
-                        }
                     }
                 }.runTaskTimer(plugin, 0, 20);
             }
         } else if (PermissionsEx.getUser((Player) sender).inGroup("Owner")) {
             Bukkit.getConsoleSender().sendMessage("§4! §e" + sender.getName() + " tried to stop the server");
             sender.sendMessage("§7| §4Only for the §bConsoleCommandSender");
-        } else {
+        } else
             sender.sendMessage(Main.noperm);
-        }
         return false;
     }
 }

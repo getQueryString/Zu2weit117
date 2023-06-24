@@ -12,8 +12,7 @@ import ru.tehkode.permissions.bukkit.PermissionsEx;
 
 public class CMD_LocationQuery implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if (sender instanceof Player) {
-            Player p = (Player) sender;
+        if (sender instanceof Player p) {
             if (cmd.getName().equalsIgnoreCase("loc")) {
                 if (PermissionsEx.getUser(p).inGroup("Owner") || PermissionsEx.getUser(p).inGroup("Vice")) {
                     if (args.length == 1) {

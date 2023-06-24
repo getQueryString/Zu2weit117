@@ -14,7 +14,7 @@ import static org.bukkit.Bukkit.getConsoleSender;
 
 public class CreeperListener implements Listener {
 
-    private Main plugin;
+    private final Main plugin;
     Plugin context;
 
     public CreeperListener(Plugin pl) {

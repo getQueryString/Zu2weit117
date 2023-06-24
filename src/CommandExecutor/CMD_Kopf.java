@@ -5,7 +5,6 @@ package CommandExecutor;
 import Main.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -16,26 +15,23 @@ import ru.tehkode.permissions.bukkit.PermissionsEx;
 
 public class CMD_Kopf implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if (sender instanceof Player) {
-            Player p = (Player) sender;
+        if (sender instanceof Player p) {
             if (PermissionsEx.getUser(p).inGroup("Owner") || PermissionsEx.getUser(p).inGroup("Vice")) {
-                if (args.length == 1) {
-                    ItemStack is = new ItemStack(Material.PLAYER_HEAD, 1);
-                    SkullMeta im = (SkullMeta) is.getItemMeta();
-                    im.setOwningPlayer(p.getPlayer());
-                    im.setDisplayName("§c§n" + args[0]);
-                    is.setItemMeta(im);
-                    p.getInventory().addItem(new ItemStack[]{is});
-                    p.updateInventory();
-                    return true;
-                }
-                p.sendMessage("§bBenutze: §f/kopf§7, §f/head§7, §f/skull §a<Kopfname>");
-                return true;
-            }
-            p.sendMessage(Main.noperm);
-            return true;
-        }
-        Bukkit.getConsoleSender().sendMessage(Main.iplayer);
+                if (args.length >= 1)
+                    p.sendMessage("§bBenutze: §f/kopf§7, §f/head§7, §f/skull");
+
+                ItemStack is = new ItemStack(Material.PLAYER_HEAD, 1);
+                SkullMeta im = (SkullMeta) is.getItemMeta();
+                im.setOwningPlayer(p.getPlayer());
+                im.setDisplayName("§c§n" + p.getName());
+                is.setItemMeta(im);
+                p.getInventory().addItem(is);
+                p.updateInventory();
+
+            } else
+                p.sendMessage(Main.noperm);
+        } else
+            Bukkit.getConsoleSender().sendMessage(Main.iplayer);
         return false;
     }
 }

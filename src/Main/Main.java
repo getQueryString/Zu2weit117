@@ -4,18 +4,16 @@ package Main;
 
 import CommandExecutor.*;
 import Listeners.*;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+import org.bukkit.event.Listener;
+import org.bukkit.plugin.PluginManager;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
-
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
-import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.plugin.PluginManager;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import static org.bukkit.Bukkit.getConsoleSender;
 
@@ -30,13 +28,14 @@ public class Main extends JavaPlugin implements Listener {
     public static HashMap<Player, ArrayList<Integer>> pingPlayers = new HashMap<>();
 
     // Strings
-    public static String noperm = "§7[§bZu2weit§7]  §4§lKeine Rechte!";
-    public static String pre = "§7[§bZu2weit§7]";
-    public static String join = "§a[+]";
-    public static String leave = "§c[-]";
-    public static String kick = "§4[-]";
-    public static String iplayer = "§cDu musst ein Spieler sein!";
-    public static String ccs = "§7| §4Only for the §bConsoleCommandSender";
+    public static final String noperm = "§7[§bZu2weit§7]  §4§lKeine Rechte!";
+    public static final String pre = "§7[§bZu2weit§7]";
+    public static final String title = "§7- * - + - * - §8[§b§lZu2weit§8] §7 - * - + - * -\n\n";
+    public static final String join = "§a[+]";
+    public static final String leave = "§c[-]";
+    public static final String kick = "§4[-]";
+    public static final String iplayer = "§cDu musst ein Spieler sein!";
+    public static final String ccs = "§7| §4Only for the §bConsoleCommandSender";
     private static Main plugin;
     public static Main instance;
 
@@ -48,22 +47,13 @@ public class Main extends JavaPlugin implements Listener {
         CreeperListener cl = new CreeperListener(this);
         //CheckPing cp = new CheckPing(this);
 
-        EVENT_PlayerJoin join = new EVENT_PlayerJoin();
-        for (Player pl : Bukkit.getOnlinePlayers())
-            join.onJoin(new PlayerJoinEvent(pl, ""));
-
         PluginManager pm = Bukkit.getPluginManager();
-        pm.registerEvents(new EVENT_PlayerJoin(), this);
         pm.registerEvents(new motd(), this);
         pm.registerEvents(new PlayerChatEvent(), this);
         pm.registerEvents(new SignListener(), this);
-        pm.registerEvents(new JoinLeaveKick(), this);
+        pm.registerEvents(new PlayerConnectionListener(), this);
         pm.registerEvents(new AntiBuild_Events(), this);
         pm.registerEvents(new onDeath(), this);
-        pm.registerEvents(new PlayerPickupItem(), this);
-        pm.registerEvents(new Whitelist_PlayerLogin(), this);
-        pm.registerEvents(new BannedTitle(), this);
-        pm.registerEvents(new Vektor(), this);
         pm.registerEvents(as, this);
         pm.registerEvents(cl, this);
         //pm.registerEvents(cp, this);

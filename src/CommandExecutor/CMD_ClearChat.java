@@ -2,6 +2,7 @@
 
 package CommandExecutor;
 
+import Listeners.Color;
 import Main.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -17,8 +18,7 @@ public class CMD_ClearChat implements Listener, CommandExecutor {
     String playerColor = null;
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if (sender instanceof Player) {
-            Player p = (Player) sender;
+        if (sender instanceof Player p) {
             boolean permexo = PermissionsEx.getUser(p).inGroup("Owner");
             boolean permexv = PermissionsEx.getUser(p).inGroup("Vice");
             if (permexo || permexv || p.isOp()) {
@@ -26,10 +26,7 @@ public class CMD_ClearChat implements Listener, CommandExecutor {
                     for (Player all : Bukkit.getOnlinePlayers())
                         all.sendMessage("");
                 }
-                PermissionUser permexPlayer = PermissionsEx.getUser(p);
-                if (permexPlayer.inGroup("Owner")) playerColor = "§4§l";
-                else if (p.isOp()) playerColor = "§f§l";
-                else playerColor = "§c";
+                playerColor = Color.getPlayerColor(PermissionsEx.getUser(p), p);
 
                 Bukkit.broadcastMessage(Main.pre + " §7Der Chat wurde von " + playerColor + p.getName() + "§7 geleert.");
                 return true;

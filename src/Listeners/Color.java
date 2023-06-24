@@ -2,8 +2,12 @@
 
 package Listeners;
 
-public class ColorCodes {
-    public String ColorFormat(String output) {
+import org.bukkit.entity.Player;
+import ru.tehkode.permissions.PermissionUser;
+
+public class Color {
+
+    public String getColorFormat(String output) {
         String f1 = output.replace("&0", "§0");
         String f2 = f1.replace("&1", "§1");
         String f3 = f2.replace("&2", "§2");
@@ -25,7 +29,15 @@ public class ColorCodes {
         String f19 = f18.replace("&m", "§m");
         String f20 = f19.replace("&n", "§n");
         String f21 = f20.replace("&o", "§o");
-        String back = f21.replace("&r", "§r");
-        return back;
+        return f21.replace("&r", "§r");
+    }
+
+    public static String getPlayerColor(PermissionUser user, Player p) {
+        if (p != null && p.isOp()) return "§f";
+        else if (user.inGroup("Owner")) return "§4";
+        else if (user.inGroup("Vice")) return "§c";
+        else if (user.inGroup("Fellow")) return "§5";
+        else if (user.inGroup("default")) return "§8";
+        return null;
     }
 }

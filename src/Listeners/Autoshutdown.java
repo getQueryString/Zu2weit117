@@ -1,5 +1,3 @@
-// Help from https://www.gutefrage.net/nutzer/Tobihogh/
-
 package Listeners;
 
 import org.bukkit.Bukkit;
@@ -67,7 +65,7 @@ public class Autoshutdown implements Listener, CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (sender instanceof ConsoleCommandSender) {
             switch (label) {
-                case "starttimer":
+                case "starttimer" -> {
                     if (timer != null) {
                         sender.sendMessage("§cTimer is already running");
                     } else if (Bukkit.getOnlinePlayers().size() == 0) {
@@ -77,8 +75,8 @@ public class Autoshutdown implements Listener, CommandExecutor {
                     } else if (Bukkit.getOnlinePlayers().size() >= 1) {
                         sender.sendMessage("§cTimer could not be started because there are players on the server");
                     }
-                    break;
-                case "stoptimer":
+                }
+                case "stoptimer" -> {
                     if (timer == null) {
                         sender.sendMessage("§cTimer does not run");
                     } else {
@@ -86,7 +84,7 @@ public class Autoshutdown implements Listener, CommandExecutor {
                         stopTimer();
                         sender.sendMessage("§cTimer was interrupted");
                     }
-                    break;
+                }
             }
         } else if (PermissionsEx.getUser((Player) sender).inGroup("Owner")) {
             sender.sendMessage(Main.Main.ccs);

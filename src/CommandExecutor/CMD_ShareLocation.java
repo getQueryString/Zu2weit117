@@ -2,6 +2,7 @@
 
 package CommandExecutor;
 
+import Listeners.Color;
 import Main.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -16,8 +17,7 @@ public class CMD_ShareLocation implements CommandExecutor {
     String playerColor = null;
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if (sender instanceof Player) {
-            Player p = (Player) sender;
+        if (sender instanceof Player p) {
             if (cmd.getName().equalsIgnoreCase("sharelocation"))
                 if (PermissionsEx.getUser(p).inGroup("Owner") || PermissionsEx.getUser(p).inGroup("Vice")
                         || PermissionsEx.getUser(p).inGroup("Fellow") || p.isOp()) {
@@ -28,12 +28,7 @@ public class CMD_ShareLocation implements CommandExecutor {
                     double Y = Math.round(coordY * 100.0D) / 100.0D;
                     double Z = Math.round(coordZ * 100.0D) / 100.0D;
 
-                    PermissionUser permexPlayer = PermissionsEx.getUser(p);
-                    if (permexPlayer.inGroup("Owner")) playerColor = "§4§l";
-                    else if (p.isOp()) playerColor = "§f§l";
-                    else if (permexPlayer.inGroup("Vice")) playerColor = "§c";
-                    else if (permexPlayer.inGroup("Fellow")) playerColor = "§5";
-                    else if (permexPlayer.inGroup("default")) playerColor = "§8";
+                    playerColor = Color.getPlayerColor(PermissionsEx.getUser(p), p);
 
                     if (p.getWorld().getName().equalsIgnoreCase("world")) {
                         Bukkit.broadcastMessage("§7[" + playerColor + p.getName() + "§7]\n§a " + p.getWorld().getName()
@@ -48,9 +43,8 @@ public class CMD_ShareLocation implements CommandExecutor {
                 } else {
                     p.sendMessage(Main.noperm);
                 }
-        } else {
+        } else
             Bukkit.getConsoleSender().sendMessage(Main.iplayer);
-        }
         return false;
     }
 }
